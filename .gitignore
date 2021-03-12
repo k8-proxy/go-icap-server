@@ -22,3 +22,5 @@ vendor/
 
 # Logs
 logs.txt
+
+*.jar
