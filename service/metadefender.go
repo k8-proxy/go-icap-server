@@ -58,26 +58,6 @@ func NewMetaDefenderService() Service {
 func (m *MetaDefender) SubmitFile(f *bytes.Buffer, filename string) (*dtos.SubmitResponse, error) {
 
 	urlStr := m.BaseURL + m.ScanEndpoint
-
-	// bodyBuf := &bytes.Buffer{}
-	//
-	// bodyWriter := multipart.NewWriter(bodyBuf)
-	//
-	// bodyWriter.WriteField("apikey", m.APIKey)
-	//
-	// part, err := bodyWriter.CreateFormFile("file", filename)
-	//
-	// if err != nil {
-	// 	return nil, err
-	// }
-	//
-	// io.Copy(part, bytes.NewReader(f.Bytes()))
-	// if err := bodyWriter.Close(); err != nil {
-	// 	errorLogger.LogToFile("failed to close writer", err.Error())
-	// 	return nil, err
-	// }
-	//
-
 	req, err := http.NewRequest(http.MethodPost, urlStr, f)
 	if err != nil {
 		return nil, err
@@ -254,14 +234,13 @@ func (g *MetaDefender) SendFileApi(f *bytes.Buffer, filename string) (*http.Resp
 		return nil, err
 	}
 
-		client := &http.Client{}
-	
+	client := &http.Client{}
+
 	resp, err := client.Do(req)
 	if err != nil {
 		errorLogger.LogToFile("service: Glasswall: failed to do request:", err.Error())
 		return nil, err
 	}
-    return resp, err
-
+	return resp, err
 
 }

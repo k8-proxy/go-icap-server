@@ -47,11 +47,9 @@ func GetFileName(req *http.Request) string {
 	//req.RequestURI  inserting dummy response if the http request is nil
 	var Requrl string
 	if req == nil {
-		Requrl = "http://www.example/images/sampletest.pdf"
-
+		return ""
 	} else {
 		Requrl = req.RequestURI
-
 	}
 	u, _ := url.Parse(Requrl)
 

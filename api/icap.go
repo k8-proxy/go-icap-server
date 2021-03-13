@@ -50,9 +50,11 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 
 		h.Set("Methods", utils.ICAPModeResp)
 		h.Set("Allow", "204")
-
-		if pb, _ := strconv.Atoi(appCfg.PreviewBytes); pb > 0 {
-			h.Set("Preview", appCfg.PreviewBytes)
+		// Add preview if preview_enabled is true in config
+		if appCfg.PreviewEnabled == true {
+			if pb, _ := strconv.Atoi(appCfg.PreviewBytes); pb >= 0 {
+				h.Set("Preview", appCfg.PreviewBytes)
+			}
 		}
 
 		h.Set("Transfer-Preview", utils.Any)
@@ -145,7 +147,7 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 		if appCfg.RespScannerVendor == "glasswall" {
 			//34.242.219.224:1344
 			// "https://52.19.235.59"
-
+			filename = "test"
 			resp, err := DoCDR("glasswall", buf, filename)
 			if err != nil {
 				fmt.Println(err)
@@ -161,7 +163,6 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 					StatusCode: http.StatusOK,
 					Status:     http.StatusText(http.StatusOK),
 					Header: http.Header{
-						"Content-Type":   []string{"application/pdf"},
 						"Content-Length": []string{strconv.Itoa(len(string(bodybyte)))},
 					},
 				}
