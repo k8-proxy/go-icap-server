@@ -1,4 +1,4 @@
-title = "ICAPEG configuration file"
+title = "ICAP configuration file"
 
 [app]
 log_level = "debug" # the log levels for tha app, available values: info-->logging the overall progress of the app, debug --> log everything including errors, error --> log infos and just errors
