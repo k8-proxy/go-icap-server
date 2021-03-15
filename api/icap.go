@@ -136,7 +136,6 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 			FileType: fileExt,
 			FileSize: float64(buf.Len()),
 		}
-
 		/* If the shadow virus scanner wants to run independently */
 		if appCfg.RespScannerVendor == utils.NoVendor && appCfg.RespScannerVendorShadow != utils.NoVendor {
 			go doShadowScan(filename, fmi, buf, "")
@@ -145,8 +144,7 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 		}
 		// Gw rebuid servise req api , resp icap client
 		if appCfg.RespScannerVendor == "glasswall" {
-			//34.242.219.224:1344
-			// "https://52.19.235.59"
+
 			filename = "test"
 			resp, err := DoCDR("glasswall", buf, filename)
 			if err != nil {
@@ -159,6 +157,7 @@ func ToICAPEGResp(w icap.ResponseWriter, req *icap.Request) {
 
 			} else {
 				bodybyte, _ := ioutil.ReadAll(resp.Body)
+
 				newResp := &http.Response{
 					StatusCode: http.StatusOK,
 					Status:     http.StatusText(http.StatusOK),
