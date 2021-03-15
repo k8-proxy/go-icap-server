@@ -10,7 +10,7 @@ resp_scanner_vendor_shadow = "none"
 req_scanner_vendor_shadow = "none"
 bypass_extensions = ["*"]
 process_extensions = ["txt" , "pdf" , "dmg" , "exe" , "com", "rar" , "unknown"] # * = everything except the ones in bypass, unknown = system couldn't find out the type of the file
-preview_bytes = "1024" #byte
+preview_bytes = "4096" #byte
 preview_enabled = true # options send preview header or not
 propagate_error = true
 service_caption ="Go-ICAP server - Glasswall Rebuild service"
