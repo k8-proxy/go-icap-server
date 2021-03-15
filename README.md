@@ -3,7 +3,11 @@
     <em> k8-go-icap server.</em>
 </p>
 
+
 <p align="center">
+	 <a href="https://github.com/haitham911/go-icap-server/actions/workflows/build.yml">
+        <img src="https://github.com/haitham911/go-icap-server/actions/workflows/build.yml/badge.svg"/>
+    </a>
     <a href="https://goreportcard.com/report/github.com/haitham911/go-icap-server">
         <img src="https://goreportcard.com/badge/haitham911/go-icap-server" alt="Go Report Card">
     </a>
