@@ -61,7 +61,7 @@ func startTesting(t *testing.T) {
 		}
 
 		t.Log("Performing REQMOD...")
-
+		time.Sleep(2 * time.Second)
 		resp, err := performReqmod(fmt.Sprintf("icap://localhost:%d/reqmod-icapeg", config.App().Port), httpReq)
 
 		if err != nil {
