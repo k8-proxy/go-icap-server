@@ -38,7 +38,7 @@ func startTestServer(stop chan os.Signal) error {
 		}
 	}()
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(5 * time.Millisecond)
 
 	log.Printf("ICAP server is running on localhost:%d ...\n", config.App().Port)
 

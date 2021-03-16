@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"sync"
 	"testing"
 	"time"
 
@@ -22,7 +23,15 @@ func TestICAPeg(t *testing.T) {
 	stopShadow := make(chan os.Signal, 1)
 
 	//starting the test ICAP server
-	go startTestServer(stop)
+	var wg sync.WaitGroup
+	// `Add(1) signifies that there is 1 task that we need to wait for
+	wg.Add(1)
+	go func() {
+		startTestServer(stop)
+		wg.Done()
+
+	}()
+	wg.Wait()
 
 	//preparing the third-party mock virus scanner servers
 	tss := getThirdPartyServers()
